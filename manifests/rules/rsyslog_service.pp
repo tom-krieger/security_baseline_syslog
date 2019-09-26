@@ -57,7 +57,7 @@ class security_baseline_syslog::rules::rsyslog_service (
 
     if($enforce) {
       service { 'rsyslog':
-        esnure => running,
+        ensure => running,
         enable => true,
       }
     }
