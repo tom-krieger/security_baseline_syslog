@@ -1,0 +1,20 @@
+# This file can be used to install module dependencies for unit testing
+# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
+---
+fixtures:
+  symlinks:
+    security_baseline_syslog: "#{source_dir}"
+  forge_modules:
+    stdlib:
+      repo: "puppetlabs-stdlib"
+      ref: "6.0.0"
+    concat:
+      repo: "puppetlabs-concat"
+      ref: "5.3.0"
+    echo:
+      repo: "ipcrm-echo"
+      fref: "0.1.6"
+  repositories:
+    security_baseline:
+      repo: "git://github.com/tom-krieger/security_baseline"
+      ref: "master"
