@@ -15,7 +15,7 @@ Facter.add(:security_baseline_syslog) do
     rsyslog = {}
     rsyslog['service'] = check_service_is_enabled('rsyslog')
     rsyslog['package'] = check_package_installed('rsyslog')
-    val = Facter::Core::Execution.exec('grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf').split(%r{\s+}).strip
+    val = Facter::Core::Execution.exec('grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf').split(%r{\s+})[1].strip
     rsyslog['filepermissions'] = check_value(val, 'none')
     val = Facter::Core::Execution.exec('grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf')
     rsyslog['remotesyslog'] = check_value(val, 'none')
