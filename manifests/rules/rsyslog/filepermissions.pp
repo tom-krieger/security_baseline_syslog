@@ -18,14 +18,14 @@
 #    Loglevel for the message
 #
 # @example
-#   class { 'ecurity_baseline_syslog::rules::rsyslog_filepermissions':
+#   class { 'security_baseline_syslog::rules::rsyslog::filepermissions':
 #             enforce => true,
 #             message => 'What you want to log',
 #             log_level => 'warning',
 #   }
 #
 # @api private
-class security_baseline_syslog::rules::rsyslog_filepermissions (
+class security_baseline_syslog::rules::rsyslog::filepermissions (
   Boolean $enforce,
   String $message = '',
   String $log_level = 'info',

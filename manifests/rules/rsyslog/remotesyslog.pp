@@ -18,14 +18,14 @@
 #    Loglevel for the message
 #
 # @example
-#   class { 'ecurity_baseline_syslog::rules::rsyslog_remotesyslog':
+#   class { 'security_baseline_syslog::rules::rsyslog::remotesyslog':
 #             enforce => true,
 #             message => 'What you want to log',
 #             log_level => 'warning',
 #   }
 #
 # @api private
-class security_baseline_syslog::rules::rsyslog_remotesyslog (
+class security_baseline_syslog::rules::rsyslog::remotesyslog (
   Boolean $enforce,
   String $message = '',
   String $log_level = 'info',
@@ -70,7 +70,7 @@ class security_baseline_syslog::rules::rsyslog_remotesyslog (
     }
 
     $logentry = $logentry_default + $logentry_data
-    ::security_baseline::logging { 'rsyslog-filepermissions':
+    ::security_baseline::logging { 'rsyslog-remotesyslog':
       * => $logentry,
     }
   }

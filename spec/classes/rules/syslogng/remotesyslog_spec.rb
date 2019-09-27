@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'security_baseline_syslog::rules::rsyslog_remotesyslog' do
+describe 'security_baseline_syslog::rules::syslogng::remotesyslog' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }

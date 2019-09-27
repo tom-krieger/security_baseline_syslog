@@ -1,10 +1,10 @@
 # @summary 
-#    Ensure rsyslog Service is enabled (Scored)
+#    Ensure syslog-ng Service is enabled (Scored)
 #
-# Once the rsyslog package is installed it needs to be activated.
+# Once the syslog-ng package is installed it needs to be activated.
 #
 # Rationale:
-# If the rsyslog service is not activated the system may default to the syslogd service or lack logging instead.
+# If the syslog-ng service is not activated the system may default to the syslogd service or lack logging instead.
 #
 # @param enforce
 #    Sets rule enforcemt. If set to true, code will be exeuted to bring the system into a comliant state.
@@ -16,54 +16,54 @@
 #    Loglevel for the message
 #
 # @example
-#   class { 'ecurity_baseline_syslog::rules::rsyslog_service':
+#   class { 'security_baseline_syslog::rules::syslogng::service':
 #             enforce => true,
 #             message => 'What you want to log',
 #             log_level => 'warning',
 #   }
 #
 # @api private
-class security_baseline_syslog::rules::rsyslog_service (
+class security_baseline_syslog::rules::syslogng::service (
   Boolean $enforce,
   String $message = '',
   String $log_level = 'info',
 ) {
   $logentry_default = {
-    rulenr    => '4.2.1.2',
-    rule      => 'rsyslog-service',
-    desc      => 'Ensure rsyslog Service is enabled (Scored)',
+    rulenr    => '4.2.2.1',
+    rule      => 'syslog-ng-service',
+    desc      => 'Ensure syslog-ng Service is enabled (Scored)',
   }
 
-  if($::security_baseline_syslog::syslog == 'rsyslog') {
+  if($::security_baseline_syslog::syslog == 'syslog-ng') {
 
-    if($facts['security_baseline_syslog']['rsyslog']['services'] == false) {
-      echo { 'rsyslog-service':
-        message  => 'Rsyslog service is not enabled.',
+    if($facts['security_baseline_syslog']['syslog-ng']['services'] == false) {
+      echo { 'syslog-ng-service':
+        message  => 'Syslog-ng service is not enabled.',
         loglevel => $log_level,
         withpath => false,
       }
       $logentry_data = {
         level     => $log_level,
-        msg       => 'Rsyslog service is not enabled.',
+        msg       => 'Syslog-ng service is not enabled.',
         rulestate => 'not compliant',
       }
     } else {
       $logentry_data = {
         level     => 'ok',
-        msg       => 'Rsyslog service is enabled.',
+        msg       => 'Syslog-ng service is enabled.',
         rulestate => 'compliant',
       }
     }
 
     if($enforce) {
-      service { 'rsyslog':
+      service { 'syslog-ng':
         ensure => running,
         enable => true,
       }
     }
 
     $logentry = $logentry_default + $logentry_data
-    ::security_baseline::logging { 'rsyslog-service':
+    ::security_baseline::logging { 'syslog-ng-service':
       * => $logentry,
     }
   }

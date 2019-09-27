@@ -48,4 +48,10 @@ class security_baseline_syslog (
     path        => ['/bin', '/usr/bin', '/sbin', '/usr/sbin'],
     refreshonly => true,
   }
+
+  exec { 'reload-syslog-ng':
+    command     => 'pkill -HUP syslog-ng',
+    path        => ['/bin', '/usr/bin', '/sbin', '/usr/sbin'],
+    refreshonly => true,
+  }
 }

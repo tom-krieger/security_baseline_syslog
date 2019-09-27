@@ -22,7 +22,10 @@ class security_baseline_syslog::rules (
   String $log_level  = 'info',
 ) {
   $classes = [
-    'security_baseline_syslog::rules::rsyslog_service',
+    'security_baseline_syslog::rules::rsyslog::service',
+    'security_baseline_syslog::rules::rsyslog::filepermissions',
+    'security_baseline_syslog::rules::rsyslog::remotesyslog',
+    'security_baseline_syslog::rules::rsyslog::remoteloghost',
   ]
 
   $classes.each |$class| {
