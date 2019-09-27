@@ -36,7 +36,7 @@ Facter.add(:security_baseline_syslog) do
     syslog_ng['package'] = check_package_installed('syslog-ng')
     val = Facter::Core::Execution.exec('grep ^options /etc/syslog-ng/syslog-ng.conf 2>/dev/null').match(%r{perm\((\d+)\)}).strip
     syslog_ng['filepermissions'] = check_value_string(val, 'none')
-    val = Facter::Core::Execution.exec('grep destination logserver /etc/syslog-ng/syslog-ng.conf 2>/sdev/null').match(%r{tcp\((.*)\)}).strip
+    val = Facter::Core::Execution.exec('grep destination logserver /etc/syslog-ng/syslog-ng.conf 2>/sdev/null').match(%r{tcp\((.*)\)})
     logserv = check_value_string(val, 'none')
     val = Facter::Code::Execution.exec('grep "log.*{.*source(src);.*destination(logserver);.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
     logsend = check_value_string(val, 'none')
