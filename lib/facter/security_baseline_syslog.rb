@@ -38,7 +38,7 @@ Facter.add(:security_baseline_syslog) do
     syslog_ng['filepermissions'] = check_value_string(val, 'none')
     val = Facter::Core::Execution.exec('grep destination logserver /etc/syslog-ng/syslog-ng.conf 2>/sdev/null').match(%r{tcp\((.*)\)})
     logserv = check_value_string(val, 'none')
-    val = Facter::Code::Execution.exec('grep "log.*{.*source(src);.*destination(logserver);.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
+    val = Facter::Core::Execution.exec('grep "log.*{.*source(src);.*destination(logserver);.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
     logsend = check_value_string(val, 'none')
     syslog_ng['remotesyslog'] = if (logserv == 'none') || (logsend == 'none')
                                   'none'
@@ -47,9 +47,9 @@ Facter.add(:security_baseline_syslog) do
                                 end
     val = Facter::Core::Execution.exec('grep "source net{.*tcp();.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
     logsrc = check_value_string(val, 'none')
-    val = Facter::Code::Execution.exec('grep "destination remote.*{.*file(\"/var/log/remote/\${FULLHOST}-log\");.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
+    val = Facter::Core::Execution.exec('grep "destination remote.*{.*file(\"/var/log/remote/\${FULLHOST}-log\");.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
     logdest = check_value_string(val, 'none')
-    val = Facter::Code::Execution.exec('grep "log {.*source(net);.*destination(remote);.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
+    val = Facter::Core::Execution.exec('grep "log {.*source(net);.*destination(remote);.*};" /etc/syslog-ng/syslog-ng.conf 2>/dev/null')
     log = check_value_string(val, 'none')
     syslog_ng['loghost'] = if (logsrc != 'none') && (logdest != 'none') && (log != 'none')
                              true
