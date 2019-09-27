@@ -3,7 +3,7 @@
 # check a value and return a value depending on conditions
 
 def check_value_string(val, default)
-  if val.empty? || val.nil?
+  if val.nil? || val.empty?
     default
   else
     val
@@ -19,7 +19,7 @@ def check_value_boolean(val, default)
           true
         end
 
-  if val.empty? || val.nil?
+  if val.nil? || val.empty?
     default
   else
     ret
