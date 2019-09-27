@@ -26,6 +26,11 @@ class security_baseline_syslog::rules (
     'security_baseline_syslog::rules::rsyslog::filepermissions',
     'security_baseline_syslog::rules::rsyslog::remotesyslog',
     'security_baseline_syslog::rules::rsyslog::remoteloghost',
+    'security_baseline_syslog::rules::syslogng::service',
+    'security_baseline_syslog::rules::syslogng::filepermissions',
+    'security_baseline_syslog::rules::syslogng::remotesyslog',
+    'security_baseline_syslog::rules::syslogng::remoteloghost',
+    'security_baseline_syslog::rules::syslog',
   ]
 
   $classes.each |$class| {
