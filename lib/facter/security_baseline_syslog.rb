@@ -21,7 +21,7 @@ Facter.add(:security_baseline_syslog) do
     val = Facter::Core::Execution.exec('grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null')
     rsyslog['remotesyslog'] = check_value_string(val, 'none')
     val = Facter::Core::Execution.exec("grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null")
-    mod = chech_value_string(val, 'none')
+    mod = check_value_string(val, 'none')
     val = Facter::Core::Execution.exec("grep '$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null")
     port = check_value_string(val, 'none')
     rsyslog['loghost'] = if (mod != 'none') && (port != 'none')
