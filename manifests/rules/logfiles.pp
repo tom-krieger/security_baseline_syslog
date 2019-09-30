@@ -43,7 +43,7 @@ class security_baseline_syslog::rules::logfiles (
           ensure  => directory,
           recurse => true,
           mode    => 'g-wx,o-rwx',  #lint:ignore:no_symbolic_file_modes
-          ignore  => 'puppet',
+          ignore  => 'puppetlabs',
         }
       }
   }
