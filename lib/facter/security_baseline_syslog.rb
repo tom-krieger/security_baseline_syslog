@@ -61,12 +61,12 @@ Facter.add(:security_baseline_syslog) do
     security_baseline_syslog['syslog_installed'] = security_baseline_syslog['rsyslog']['package'] || security_baseline_syslog['syslog-ng']['package']
 
     logfiles = {}
-    Facter::Core::Execution.exec('find /var/log -type f -ls').split("\n").each do |logfile|
+    Facter::Core::Execution.exec('find /var/log -type f').split("\n").each do |logfile|
       mode = File.stat(logfile).mode & 0o7777
       logfiles[logfile] = mode
     end
     security_baseline_syslog['logfiles'] = logfiles
-    
+
     security_baseline_syslog
   end
 end
