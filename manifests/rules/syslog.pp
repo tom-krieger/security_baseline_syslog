@@ -58,7 +58,7 @@ class security_baseline_syslog::rules::syslog (
   }
 
   $logentry = $logentry_default + $logentry_data
-  ::security_baseline::logging { 'rsyslog-filepermissions':
+  ::security_baseline::logging { 'syslog-installed':
     * => $logentry,
   }
 }
