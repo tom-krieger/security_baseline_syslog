@@ -31,6 +31,7 @@ class security_baseline_syslog::rules (
     'security_baseline_syslog::rules::syslogng::remotesyslog',
     'security_baseline_syslog::rules::syslogng::remoteloghost',
     'security_baseline_syslog::rules::syslog',
+    'security_baseline_syslog::rules::logfiles',
   ]
 
   $classes.each |$class| {
