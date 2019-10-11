@@ -28,13 +28,13 @@
 # @example
 #   include ::security_baseline_syslog
 class security_baseline_syslog (
-  Boolean $enforce                = true,
-  String $message                 = '',
-  String $log_level               = 'info',
-  String $logfile                 = '',
-  Enum['rsyslog','syslog-ng'] $syslog           = 'rsyslog',
-  Boolean $is_loghost             = false,
-  String $remote_syslog_host        = '',
+  Boolean $enforce                    = true,
+  String $message                     = '',
+  String $log_level                   = 'info',
+  String $logfile                     = '',
+  Enum['rsyslog','syslog-ng'] $syslog = 'rsyslog',
+  Boolean $is_loghost                 = false,
+  String $remote_syslog_host          = '',
 ) {
 
   class { '::security_baseline_syslog::rules':

@@ -4,6 +4,7 @@ describe 'security_baseline_syslog' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
+
       os_facts.merge(
         'security_baseline_syslog' => {
           'rsyslog' => {
@@ -11,17 +12,17 @@ describe 'security_baseline_syslog' do
             'loghost' => true,
             'package' => true,
             'remotesyslog' => 'none',
-            'service' => 'enabled'
+            'service' => 'enabled',
           },
           'syslog-ng' => {
             'filepermissions' => 'none',
             'loghost' => false,
             'package' => false,
             'remotesyslog' => 'none',
-            'service' => 'disabled'
+            'service' => 'disabled',
           },
           'syslog_installed' => true,
-        }
+        },
       )
 
       it { is_expected.to compile }
