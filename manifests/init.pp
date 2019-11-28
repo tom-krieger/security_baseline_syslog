@@ -37,6 +37,14 @@ class security_baseline_syslog (
   String $remote_syslog_host          = '',
 ) {
 
+  if($enforce) {
+  if($syslog == 'syslog-ng') {
+      class { 'syslogng': }
+    } elsif ($syslog == 'rsyslog') {
+      class { 'rsyslog::server': }
+    }
+  }
+
   class { '::security_baseline_syslog::rules':
     enforce   => $enforce,
     message   => $message,
