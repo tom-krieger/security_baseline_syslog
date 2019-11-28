@@ -56,9 +56,11 @@ class security_baseline_syslog::rules::rsyslog::service (
     }
 
     if($enforce) {
-      service { 'rsyslog':
-        ensure => running,
-        enable => true,
+      if(!defined(Servicve['rsyslog'])) {
+        service { 'rsyslog':
+          ensure => running,
+          enable => true,
+        }
       }
     }
 
