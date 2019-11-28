@@ -17,6 +17,12 @@
 # @param log_level
 #    Loglevel for the message
 #
+# @param level
+#    Profile level
+#
+# @param scored
+#    Indicates if a rule is scored or not
+#
 # @example
 #   class { 'security_baseline_syslog::rules::rsyslog::filepermissions':
 #             enforce => true,
@@ -27,13 +33,17 @@
 # @api private
 class security_baseline_syslog::rules::rsyslog::filepermissions (
   Boolean $enforce,
-  String $message = '',
+  String $message   = '',
   String $log_level = 'info',
+  Integer $level    = 1,
+  Boolean $scored   = true,
 ) {
   $logentry_default = {
     rulenr    => '4.2.1.3',
     rule      => 'rsyslog-filepermissions',
     desc      => 'Ensure rsyslog default file permissions configured (Scored)',
+    level     => $level,
+    scored    => $scored,
   }
 
   if($::security_baseline_syslog::syslog == 'rsyslog') {

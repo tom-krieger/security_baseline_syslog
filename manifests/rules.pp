@@ -20,6 +20,8 @@ class security_baseline_syslog::rules (
   Boolean $enforce   = true,
   String $message    = '',
   String $log_level  = 'info',
+  Integer $level     = 1,
+  Boolean $scored    = true,
 ) {
   $classes = [
     'security_baseline_syslog::rules::rsyslog::service',
@@ -39,6 +41,8 @@ class security_baseline_syslog::rules (
       enforce   => $enforce,
       message   => $message,
       log_level => $log_level,
+      level     => $level,
+      scored    => $scored,
     }
   }
 }

@@ -29,11 +29,15 @@ class security_baseline_syslog::rules::logfiles (
   Boolean $enforce,
   String $message   = '',
   String $log_level = 'info',
+  Integer $level    = 1,
+  Boolean $scored   = true,
 ) {
   $logentry_default = {
     rulenr    => '4.2.4',
     rule      => 'syslog-logfiles',
     desc      => 'Ensure permissions on all logfiles are configured (Scored)',
+    level     => $level,
+    scored    => $scored,
   }
 
   if($facts['security_baseline_syslog']['syslog_installed']) {

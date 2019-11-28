@@ -13,6 +13,12 @@
 # @param log_level
 #    Loglevel for the message
 #
+# @param level
+#    Profile level
+#
+# @param scored
+#    Indicates if a rule is scored or not
+#
 # @param logfile 
 #    Logfile to log into
 #
@@ -31,6 +37,8 @@ class security_baseline_syslog (
   Boolean $enforce                    = true,
   String $message                     = '',
   String $log_level                   = 'info',
+  Integer $level                      = 1,
+  Boolean $scored                     = true,
   String $logfile                     = '',
   Enum['rsyslog','syslog-ng'] $syslog = 'rsyslog',
   Boolean $is_loghost                 = false,
@@ -38,7 +46,7 @@ class security_baseline_syslog (
 ) {
 
   if($enforce) {
-  if($syslog == 'syslog-ng') {
+    if($syslog == 'syslog-ng') {
       class { 'syslogng': }
     } elsif ($syslog == 'rsyslog') {
       class { 'rsyslog::server': }
@@ -49,6 +57,8 @@ class security_baseline_syslog (
     enforce   => $enforce,
     message   => $message,
     log_level => $log_level,
+    level     => $level,
+    scored    => $scored,
   }
 
   exec { 'reload-rsyslog':

@@ -19,6 +19,12 @@
 # @param log_level
 #    Loglevel for the message
 #
+# @param level
+#    Profile level
+#
+# @param scored
+#    Indicates if a rule is scored or not
+#
 # @example
 #   class { 'security_baseline_syslog::rules::rsyslog::filepermissions':
 #             enforce => true,
@@ -29,13 +35,17 @@
 # @api private
 class security_baseline_syslog::rules::syslog (
   Boolean $enforce,
-  String $message = '',
+  String $message   = '',
   String $log_level = 'info',
+  Integer $level    = 1,
+  Boolean $scored   = true,
 ) {
   $logentry_default = {
     rulenr    => '4.2.3',
     rule      => 'syslog-installed',
     desc      => 'Ensure rsyslog or syslog-ng is installed (Scored)',
+    level     => $level,
+    scored    => $scored,
   }
 
   if($facts['security_baseline_syslog']['syslog_installed']) {

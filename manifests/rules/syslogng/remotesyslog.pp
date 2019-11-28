@@ -17,6 +17,12 @@
 # @param log_level
 #    Loglevel for the message
 #
+# @param level
+#    Profile level
+#
+# @param scored
+#    Indicates if a rule is scored or not
+#
 # @example
 #   class { 'security_baseline_syslog::rules::syslogng::remotesyslog':
 #             enforce => true,
@@ -27,13 +33,17 @@
 # @api private
 class security_baseline_syslog::rules::syslogng::remotesyslog (
   Boolean $enforce,
-  String $message = '',
+  String $message   = '',
   String $log_level = 'info',
+  Integer $level    = 1,
+  Boolean $scored   = true,
 ) {
   $logentry_default = {
     rulenr    => '4.2.2.4',
     rule      => 'syslog-ng-remotesyslog',
     desc      => 'Ensure syslog-ng is configured to send logs to a remote log host (Scored)',
+    level     => $level,
+    scored    => $scored,
   }
 
   if($::security_baseline_syslog::syslog == 'syslog-ng') {
@@ -52,7 +62,7 @@ class security_baseline_syslog::rules::syslogng::remotesyslog (
     } else {
       $logentry_data = {
         level     => 'ok',
-        msg       => 'syslog-ng is configured to send logs to a remote log host.',
+        msg       => 'syslog-ng is configured to send logs to a remote log host.', #lint:ignore:140chars
         rulestate => 'compliant',
       }
     }
@@ -62,7 +72,7 @@ class security_baseline_syslog::rules::syslogng::remotesyslog (
         file_line { 'syslog-ng.conf logging_host':
           ensure => present,
           path   => '/etc/syslog-ng/syslog-ng.conf',
-          line   => "destination logserver { tcp(\"${::security_baseline_syslog::remote_syslog_host}\" port(514)); }; log { source(src); destination(logserver); };",
+          line   => "destination logserver { tcp(\"${::security_baseline_syslog::remote_syslog_host}\" port(514)); }; log { source(src); destination(logserver); };", #lint:ignore:140chars
           match  => '^destination logserver',
           notify => Exec['reload-syslog-ng'],
         }

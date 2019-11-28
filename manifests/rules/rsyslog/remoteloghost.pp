@@ -20,6 +20,12 @@
 # @param log_level
 #    Loglevel for the message
 #
+# @param level
+#    Profile level
+#
+# @param scored
+#    Indicates if a rule is scored or not
+#
 # @example
 #   class { 'security_baseline_syslog::rules::rsyslog::remoteloghost':
 #             enforce => true,
@@ -30,13 +36,17 @@
 # @api private
 class security_baseline_syslog::rules::rsyslog::remoteloghost (
   Boolean $enforce,
-  String $message = '',
+  String $message   = '',
   String $log_level = 'info',
+  Integer $level    = 1,
+  Boolean $scored   = true,
 ) {
   $logentry_default = {
     rulenr    => '4.2.1.5',
     rule      => 'rsyslog-remoteloghost',
     desc      => 'Ensure remote rsyslog messages are only accepted on designated log hosts. (Not Scored)',
+    level     => $level,
+    scored    => $scored,
   }
 
   if(
