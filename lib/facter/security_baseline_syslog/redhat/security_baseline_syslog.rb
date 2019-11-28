@@ -1,6 +1,6 @@
-require 'facter/helpers/security_baseline_syslog/check_service_enabled'
-require 'facter/helpers/security_baseline_syslog/check_package_installed'
-require 'facter/helpers/security_baseline_syslog/check_value_string'
+require 'facter/security_baseline_syslog/helpers/check_service_enabled'
+require 'facter/security_baseline_syslog/helpers/check_package_installed'
+require 'facter/security_baseline_syslog/helpers/check_value_string'
 
 # frozen_string_literal: true
 
