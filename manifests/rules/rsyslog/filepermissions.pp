@@ -66,10 +66,12 @@ class security_baseline_syslog::rules::rsyslog::filepermissions (
         notify => Exec['reload-rsyslog'],
       }
 
-      file { '/etc/rsyslog.d/':
-        ensure  => directory,
-        recurse => true,
-        mode    => '0640',
+      if(!defined(File['/etc/rsyslog.d/'])) {
+        file { '/etc/rsyslog.d/':
+          ensure  => directory,
+          recurse => true,
+          mode    => '0640',
+        }
       }
     }
 

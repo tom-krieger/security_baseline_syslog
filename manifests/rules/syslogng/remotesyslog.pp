@@ -60,12 +60,12 @@ class security_baseline_syslog::rules::syslogng::remotesyslog (
     if($enforce) {
       if($::security_baseline_syslog::remote_syslog_host != '') {
         file_line { 'syslog-ng.conf logging_host':
-      ensure => present,
-      path   => '/etc/syslog-ng/syslog-ng.conf',
-      line   => "destination logserver { tcp(\"${::security_baseline_syslog::remote_syslog_host}\" port(514)); }; log { source(src); destination(logserver); };",
-      match  => '^destination logserver',
-      notify => Exec['reload-syslog-ng'],
-    }
+          ensure => present,
+          path   => '/etc/syslog-ng/syslog-ng.conf',
+          line   => "destination logserver { tcp(\"${::security_baseline_syslog::remote_syslog_host}\" port(514)); }; log { source(src); destination(logserver); };",
+          match  => '^destination logserver',
+          notify => Exec['reload-syslog-ng'],
+        }
       }
     }
 
