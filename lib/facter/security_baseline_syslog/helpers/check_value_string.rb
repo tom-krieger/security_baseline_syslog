@@ -19,7 +19,7 @@ def check_value_boolean(val, default)
           true
         end
 
-  if val.nil? ||  val.empty?
+  if val.nil? || val.empty?
     default
   else
     ret
