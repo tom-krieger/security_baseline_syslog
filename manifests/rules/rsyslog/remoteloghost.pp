@@ -61,9 +61,9 @@ class security_baseline_syslog::rules::rsyslog::remoteloghost (
         withpath => false,
       }
       $logentry_data = {
-        level     => 'ok',
+        log_level => $log_level,
         msg       => 'Host is configured to accept remote log messages.',
-        rulestate => 'not scored',
+        rulestate => 'not compliant',
       }
     } else {
       echo { 'rsyslog-remoteloghost':
@@ -72,9 +72,9 @@ class security_baseline_syslog::rules::rsyslog::remoteloghost (
         withpath => false,
       }
       $logentry_data = {
-        level     => 'ok',
+        log_level => 'ok',
         msg       => 'Host is configured to not accept remote log messages.',
-        rulestate => 'not scored',
+        rulestate => 'compliant',
       }
     }
 

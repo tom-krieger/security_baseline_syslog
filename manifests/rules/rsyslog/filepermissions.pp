@@ -55,13 +55,13 @@ class security_baseline_syslog::rules::rsyslog::filepermissions (
         withpath => false,
       }
       $logentry_data = {
-        level     => $log_level,
+        log_level => $log_level,
         msg       => 'Rsyslog creates files with wrong permissions.',
         rulestate => 'not compliant',
       }
     } else {
       $logentry_data = {
-        level     => 'ok',
+        log_level => 'ok',
         msg       => 'Rsyslog creates files with correct permissions.',
         rulestate => 'compliant',
       }

@@ -53,13 +53,13 @@ class security_baseline_syslog::rules::syslogng::service (
         withpath => false,
       }
       $logentry_data = {
-        level     => $log_level,
+        log_level => $log_level,
         msg       => 'Syslog-ng service is not enabled.',
         rulestate => 'not compliant',
       }
     } else {
       $logentry_data = {
-        level     => 'ok',
+        log_level => 'ok',
         msg       => 'Syslog-ng service is enabled.',
         rulestate => 'compliant',
       }

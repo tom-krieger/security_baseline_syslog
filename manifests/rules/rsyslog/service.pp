@@ -53,13 +53,13 @@ class security_baseline_syslog::rules::rsyslog::service (
         withpath => false,
       }
       $logentry_data = {
-        level     => $log_level,
+        log_level => $log_level,
         msg       => 'Rsyslog service is not enabled.',
         rulestate => 'not compliant',
       }
     } else {
       $logentry_data = {
-        level     => 'ok',
+        log_level => 'ok',
         msg       => 'Rsyslog service is enabled.',
         rulestate => 'compliant',
       }

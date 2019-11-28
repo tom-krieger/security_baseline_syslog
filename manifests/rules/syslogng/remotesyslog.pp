@@ -55,13 +55,13 @@ class security_baseline_syslog::rules::syslogng::remotesyslog (
         withpath => false,
       }
       $logentry_data = {
-        level     => $log_level,
+        log_level => $log_level,
         msg       => 'syslog-ng is not configured to send logs to a remote log host.',
         rulestate => 'not compliant',
       }
     } else {
       $logentry_data = {
-        level     => 'ok',
+        log_level => 'ok',
         msg       => 'syslog-ng is configured to send logs to a remote log host.', #lint:ignore:140chars
         rulestate => 'compliant',
       }
